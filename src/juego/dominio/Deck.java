@@ -10,14 +10,14 @@ public class Deck   {
 	
 	public Deck(int numberOfDecks) {
 		
-		this.cards = DeckFactory.createCustomDeck(numberOfDecks);
+		cards = DeckFactory.createCustomDeck(numberOfDecks);
 	}
 	
 	public void refillFromDiscard(DiscardPile discardPile) {
 	    List<Card> newCards = discardPile.grabAllButLast();
 	    Collections.shuffle(newCards); 
 	    for (Card card : newCards) {
-	        this.cards.push(card);
+	        cards.push(card);
 	    }
 	}
 	public Card drawCard(DiscardPile discardPile) {
