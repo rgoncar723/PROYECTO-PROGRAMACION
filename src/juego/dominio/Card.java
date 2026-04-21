@@ -1,6 +1,6 @@
 package juego.dominio;
 
-public class Card {
+public class Card implements Comparable<Card>{
 	private Rank rank;
 	private Suit suit;
 	
@@ -22,6 +22,14 @@ public class Card {
 	@Override
 	public String toString() {
 		return String.format("%s%s", rank,suit);
+	}
+
+	@Override
+	public int compareTo(Card o) {
+		if(suit != o.suit) {
+			return suit.compareTo(o.suit);
+		}
+		return Integer.compare(rank.getRank(), o.rank.getRank());
 	}
 	
 }
