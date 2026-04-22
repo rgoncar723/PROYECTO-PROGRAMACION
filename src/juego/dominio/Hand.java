@@ -1,6 +1,8 @@
 package juego.dominio;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Hand {
@@ -19,8 +21,27 @@ public class Hand {
 	public void removeCard(Card card) {
 		cards.remove(card);
 	}
+	public void sortBySuit() {
+		cards.
+		sort(Comparator.comparing(Card::getSuit)
+				.thenComparingInt(Card::getPoints));
+	}
+	public void sortByRank() {
+		cards
+		.sort(Comparator.comparingInt(Card::getPoints));
+	}
+	public boolean canClose() {
+		return false;
+	}
+	public Card getBestDiscard() {
+		Card bestCard = null;
+		int minPoints = Integer.MAX_VALUE;
+		for(Card candidate : cards) {
+			
+		}
+	}
 	public List<Card> getCards() {
-        return new ArrayList<>(cards);
+        return Collections.unmodifiableList(cards);
     }
 
 }
