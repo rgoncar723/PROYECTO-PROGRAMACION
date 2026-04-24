@@ -130,6 +130,18 @@ public class Hand implements Combinable{
 		        default -> false; 
 		    };
 		}
+	public boolean canClose(int currentScore) {
+		boolean canPhysicallyClose, safeFromElimination;
+        int penalty = calculateUncombinedPoints();
+
+        // 1. Condición: O todas combinadas (0 pts) o una suelta de 5 o menos.
+        canPhysicallyClose = (penalty <= 5);
+
+        // 2. Condición : No cerrar si te eliminas a ti mismo.
+        safeFromElimination = (currentScore + penalty) < 100;
+
+        return canPhysicallyClose && safeFromElimination;
+    }
 	private Card findRemainingCard(List<Card> group1, List<Card> group2) {
 	   
 	    return cards.stream()

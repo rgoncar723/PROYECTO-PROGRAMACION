@@ -1,7 +1,7 @@
 package juego.dominio;
 
-public abstract class Player {
-	protected String name;
+public abstract sealed class Player permits HumanPlayer, AIPlayer {
+	protected final String name;
 	protected int score;
 	protected Hand hand;
 	
@@ -25,6 +25,6 @@ public abstract class Player {
     	return hand;
     }
     public boolean isEliminated(int limit) {
-        return this.score >= limit;
+        return score >= limit;
     }
 }
