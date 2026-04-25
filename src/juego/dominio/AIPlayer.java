@@ -30,7 +30,8 @@ public final class AIPlayer extends Player {
          toDiscard = switch (difficulty) {
             case "EASY" -> discardRadomnly();
             case "HARD" -> evaluateOptimalDiscard();
-            default     -> evaluateByPoints();
+            case "MEDIUM"    -> evaluateByPoints();
+            default -> discardRadomnly();
         };
 
         hand.removeCard(toDiscard);

@@ -19,9 +19,9 @@ public class Round {
 
    
     public void dealCards() {
-       
         for (Player p : players) {
-            p.getHand().getCards().clear();
+            
+            p.getHand().reset(); 
         }
 
         for (int i = 0; i < 7; i++) {

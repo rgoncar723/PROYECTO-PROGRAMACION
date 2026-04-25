@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 
 import juego.dominio.Card;
+import juego.dominio.DiscardPile;
+import juego.dominio.Hand;
+import juego.dominio.Player;
 
 public class ConsoleInput {
 	private final Scanner kb;
@@ -265,5 +268,42 @@ public class ConsoleInput {
 	public int getDiscardIndex(int handSize) {
     return readIntInRange(1, handSize) - 1;
 	}
+	public void displayScores(List<Player>players) {
+		System.out.printf("\n========================================\n\tTABLA DE PUNTUACIONES\t\n========================================\n%-15s | %-10s\n----------------------------------------\n","JUGADOR","PUNTOS");
+		for(Player p: players) {
+			System.out.printf("%-15s | %-10d\n========================================\n",p.getName(),p.getScore());
+		}
+	}
+	public void displayBoard(Player player, DiscardPile pile) {
+        writeLine("\n" + "=".repeat(40));
+        writeLine("TURNO ACTUAL: " + player.getName().toUpperCase());
+        
+        // Mostrar la carta superior de la pila de descarte
+        writeLine("CARTA EN EL DESCARTE: ");
+        if (pile.isEmpty()) {
+            writeLine("[ Vacía ]");
+        } else {
+            writeLine("[ " + pile.peek().toString() + " ]");
+        }
+        
+        // Mostrar la mano del jugador
+        displayHand(player.getHand());
+    }
+	public void displayHand(Hand hand) {
+        System.out.println("TU MANO:");
+        List<Card> cards = hand.getCards();
+        
+        // Imprimimos los índices arriba
+        for (int i = 1; i <= cards.size(); i++) {
+            System.out.printf("  (%d)  ", i);
+        }
+        writeLine("");
+        
+        // Imprimimos las cartas abajo
+        for (Card card : cards) {
+            write("[" + card.toString() + "] ");
+        }
+        writeLine("\n" + "-".repeat(40));
+    }
 }
 

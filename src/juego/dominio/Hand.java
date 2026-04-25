@@ -47,7 +47,7 @@ public class Hand implements Combinable{
 	}
 	
 	public List<Card> getCards() {
-        return Collections.unmodifiableList(cards);
+        return cards;
     }
 
 	@Override
@@ -171,6 +171,8 @@ public class Hand implements Combinable{
 	    
 	    return calculateUncombinedPoints();
 	}
-	
+	public void reset() {
+	    cards.clear(); 
+	}
 
 }
